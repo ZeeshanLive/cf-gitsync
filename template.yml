@@ -1,0 +1,27 @@
+Parameters:
+  vpcCidr:
+   Type: String
+  subnetCidr:
+    Type: String
+   
+
+Resources:
+  myVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref vpcCidr
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      # Tags:
+      #  - Key: stack
+      #    Value: prod
+
+  mySubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: myVPC
+      CidrBlock: !Ref subnetCidr
+      # Tags:
+      # - Key: stack
+      #   Value: production
